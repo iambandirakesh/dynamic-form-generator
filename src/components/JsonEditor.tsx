@@ -72,6 +72,7 @@ export const JsonEditor: React.FC<JSONValidatorProps> = ({
         onChange={handleChange}
         placeholder="Enter JSON here..."
         spellCheck={false}
+        data-testid="textarea"
         className={`
           w-full p-3 h-[85%]
           font-mono text-sm 
@@ -101,7 +102,10 @@ export const JsonEditor: React.FC<JSONValidatorProps> = ({
       />
 
       {error && (
-        <div className="mt-2 p-3 bg-red-50 border border-red-700 rounded-md dark:bg-gray-900">
+        <div
+          className="mt-2 p-3 bg-red-50 border border-red-700 rounded-md dark:bg-gray-900 "
+          data-testid="JsonError"
+        >
           <p className="text-sm text-red-600">
             {error}
             {cursorPosition !== null && (
@@ -111,18 +115,21 @@ export const JsonEditor: React.FC<JSONValidatorProps> = ({
         </div>
       )}
 
-      <button
-        type="button"
-        onClick={formatJSON}
-        className="
+      {!error && (
+        <button
+          type="button"
+          onClick={formatJSON}
+          className="
           mt-2 text-sm text-gray-600 
           hover:text-gray-900 hover:underline 
           cursor-pointer transition-colors duration-200
           dark:text-gray-300 dark:hover:text-gray-100
         "
-      >
-        Click to format JSON
-      </button>
+          data-testid="FormateJsonData"
+        >
+          Click to format JSON
+        </button>
+      )}
     </div>
   );
 };

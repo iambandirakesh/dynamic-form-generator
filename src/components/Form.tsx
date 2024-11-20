@@ -13,7 +13,7 @@ export const Form: React.FC<FormDataProps> = ({ formSchema }) => {
     console.log(data);
   };
   return (
-    <div className="w-full md:w-1/2 dark:text-white">
+    <div className="w-full md:w-1/2 dark:text-white" data-testid="FormDisplay">
       <h1 className="text-xl font-bold text-center">{formSchema?.formTitle}</h1>
       <p className="mb-4 text-center">{formSchema?.formDescription}</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -45,9 +45,10 @@ export const Form: React.FC<FormDataProps> = ({ formSchema }) => {
                         : undefined,
                     })}
                     className="border rounded px-2 py-1 dark:bg-gray-800 dark:text-gray-300"
+                    data-testid="inputTextArea"
                   />
                   {errors[field.id] && (
-                    <p className="text-red-500">
+                    <p className="text-red-500" data-testid="inputErrorMessage">
                       {errors[field.id]?.message as string}
                     </p>
                   )}
@@ -146,6 +147,7 @@ export const Form: React.FC<FormDataProps> = ({ formSchema }) => {
           className={`bg-blue-500 text-white px-4 py-2 rounded ${
             Object.keys(formSchema).length === 0 ? "hidden" : ""
           }`}
+          data-setid="submitButton"
         >
           Submit
         </button>
