@@ -27,7 +27,11 @@ export const Form: React.FC<FormDataProps> = ({ formSchema }) => {
               {field?.type === "text" ||
               field?.type === "email" ||
               field?.type === "password" ||
-              field?.type === "number" ? (
+              field?.type === "number" ||
+              field?.type === "file" ||
+              field?.type === "url" ||
+              field?.type === "tel" ||
+              field?.type === "date" ? (
                 <div>
                   <input
                     id={field?.id}
